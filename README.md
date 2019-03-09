@@ -16,6 +16,19 @@ instafetch.init({
     links: window.instagrams
 });
 ```
+The links array expects an id and url property:
+```
+[
+    {
+        id: "abcd123",
+        url: "/social/my-sweet-page"
+    },
+    {
+        id: "dcba321",
+        url: "/social/my-other-sweet-page"
+    }
+]
+```
 
 
 ## Installation
