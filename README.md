@@ -3,6 +3,20 @@
 [![Dependency Status](https://gemnasium.com/badges/github.com/thomasvaeth/instafetch.js.svg)](https://gemnasium.com/github.com/thomasvaeth/instafetch.js)
 
 Instafetch.js is a 6KB JavaScript plugin for the Instagram API using fetch instead of jQuery.
+This dev diaries fork adds the ability to link to a local page instead of Instagram
+if there is a local page to link to. You can accomplish this by passing in a 
+links option to the instafetch settings:
+
+```
+instafetch.init({
+    accessToken: 'REDACTED',
+    target: 'instafetch',
+    numOfPics: 10,
+    caption: false,
+    links: window.instagrams
+});
+```
+
 
 ## Installation
 Instafetch.js is available on CDNJS, NPM, Bower, and GitHub. 
