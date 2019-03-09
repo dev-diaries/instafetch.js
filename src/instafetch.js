@@ -114,6 +114,24 @@ const fetchFeed = options => {
 };
 
 /**
+ * Get the local url if the id has a match
+ * @private
+ * @param {Array} links Array of links with an id and a url
+ * @param {String} instaLink url of the instagram link
+ * @returns {String|boolean}
+ *
+ */
+const getLocalUrl = (links, instaLink) => {
+  for (const link of links) {
+    if (instaLink.indexOf(link.id) > -1) {
+      return link.url;
+    }
+  }
+
+  return false;
+};
+
+/**
  * Display JSON data from fetch
  * @private
  * @param {Object} json JSON data
@@ -129,8 +147,15 @@ const displayFeed = (json, options) => {
   json.data.forEach(data => {
     article = document.createElement('article');
     a = document.createElement('a');
-    a.href = data.link;
-    a.target = '_blank';
+    let link;
+
+    if (options.links) {
+      link = getLocalUrl(options.links, data.link);
+    }
+    a.href = link || data.link;
+    if (!link) {
+      a.target = '_blank';
+    }
     figure = document.createElement('figure');
     img = document.createElement('img');
     img.src = data.images.standard_resolution.url;
